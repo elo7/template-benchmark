@@ -17,6 +17,7 @@ var handlebars = require('./handlebars/handlebars.js');
 var coffeekup = require('./coffeekup/coffeekup.js');
 var underscore = require('./underscore/underscore.js');
 var mustache = require('./mustache/mustache.js');
+var svelte = require('./svelte/svelte.js');
 
 var test = function(name, sample, cb) {
 	var i = 0;
@@ -77,7 +78,8 @@ var samples = [
 	{ name : 'Hogan.js', sample : hogan },
 	{ name : 'Dust', sample : dust },
 	{ name : 'ECT', sample : ect },
-	{ name : 'Mustache', sample : mustache }
+	{ name : 'Mustache', sample : mustache },
+	{ name : 'Svelte', sample : svelte }
 ];
 
 var runTests = function () {
