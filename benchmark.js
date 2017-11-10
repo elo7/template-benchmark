@@ -16,6 +16,7 @@ var dot = require('./dot/dot.js');
 var handlebars = require('./handlebars/handlebars.js');
 var coffeekup = require('./coffeekup/coffeekup.js');
 var underscore = require('./underscore/underscore.js');
+var mustache = require('./mustache/mustache.js');
 
 var test = function(name, sample, cb) {
 	var i = 0;
@@ -75,7 +76,8 @@ var samples = [
 	{ name : 'Fest', sample : fest },
 	{ name : 'Hogan.js', sample : hogan },
 	{ name : 'Dust', sample : dust },
-	{ name : 'ECT', sample : ect }
+	{ name : 'ECT', sample : ect },
+	{ name : 'Mustache', sample : mustache }
 ];
 
 var runTests = function () {
