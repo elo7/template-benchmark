@@ -3,9 +3,9 @@ html
 		title!= title
 	body
 		p!= text
-		- if (projects.length)
-			- each project in projects
+		if (projects.length)
+			each project in projects
 				a(href!="#{project.url}")!= project.name
 				p!= project.description
-		- else
+		else
 			No projects

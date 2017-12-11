@@ -63,7 +63,6 @@ var testUnescaped = function(name, sample, cb) {
 };
 
 var samples = [
-
 	{ name : 'Jade', sample : jade },
 	{ name : 'Pug', sample : pug },
 	{ name : 'CoffeeKup', sample : coffeekup },
@@ -89,16 +88,13 @@ var runTests = function () {
 		var sample = samples.pop();
 		test(sample.name, sample.sample, function (err, name, result) {
 			testUnescaped(sample.name, sample.sample, function (err, name, resultUnescaped) {
-				console.log(name);
-				console.log('  Escaped   : ' + result + 'ms');
-				console.log('  Unescaped : ' + resultUnescaped + 'ms');
-				console.log('  Total     : ' + (result + resultUnescaped) + 'ms');
-				console.log('');
+				var total = result + resultUnescaped;
+				console.log(`${name};${result};${resultUnescaped};${total}`);
 				runTests();
 			});
 		});
 	}
 };
 
-console.log('Rendering ' + count + ' templates:\n');
+console.log('Framework;Escaped (ms);Unescaped (ms);Total (ms)');
 runTests();
