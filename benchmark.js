@@ -19,6 +19,7 @@ var underscore = require('./underscore/underscore.js');
 var mustache = require('./mustache/mustache.js');
 var svelte = require('./svelte/svelte.js');
 var vue = require('./vue/vue.js');
+var nunjucks = require('./nunjucks/nunjucks.js');
 
 var test = function(name, sample, cb) {
 	var i = 0;
@@ -80,7 +81,8 @@ var samples = [
 	{ name : 'ECT', sample : ect },
 	{ name : 'Mustache', sample : mustache },
 	{ name : 'Svelte', sample : svelte },
-	{ name : 'Vue', sample : vue }
+	{ name : 'Vue', sample : vue },
+	{ name : 'Nunjucks', sample : nunjucks }
 ];
 
 var runTests = function () {
