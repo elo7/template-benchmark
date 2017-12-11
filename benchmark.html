@@ -7,9 +7,11 @@
 <body>
 	<div id="result"></div>
 	<script src="node_modules/vue/dist/vue.min.js"></script>
+	<script src="node_modules/dustjs-linkedin/dist/dust-full.min.js"></script>
 	<script src="vue/vue-cli.js"></script>
+	<script src="dust/dust-cli.js"></script>
 	<script>
-		const STEPS = 10000;
+		const STEPS = 1000;
 
 		function loadData(js) {
 			return new Promise(function(resolve, reject) {
@@ -20,16 +22,21 @@
 		}
 
 		function benchmark(data, test) {
-			console.time(test.name);
 			test.prepare().then(template => {
-				for (let i = 0; i < STEPS; i++) {
-					test.step(template, data);
-				}
-				console.timeEnd(test.name);
+				console.time(test.name);
+				let i = 0;
+				let loop = function() {
+					if (i === STEPS) {
+						console.timeEnd(test.name);
+					}
+					i++;
+					test.step(template, data, loop);
+				};
+				loop();
 			});
 		}
 
-		const tests = [VueTest, VueUnescapedTest];
+		const tests = [VueTest, VueUnescapedTest, DustTest, DustUnescapedTest];
 
 		fetch('data.js').then(data => data.text()).then(loadData).then(data => {
 			tests.forEach(test => {
