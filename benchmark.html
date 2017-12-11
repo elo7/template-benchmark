@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Template benchmark</title>
+</head>
+<body>
+	<div id="result"></div>
+	<script src="node_modules/vue/dist/vue.min.js"></script>
+	<script src="vue/vue-cli.js"></script>
+	<script>
+		const STEPS = 10000;
+
+		function loadData(js) {
+			return new Promise(function(resolve, reject) {
+				let module = {};
+				eval(js);
+				resolve(module.exports);
+			});
+		}
+
+		function benchmark(data, test) {
+			console.time(test.name);
+			test.prepare().then(template => {
+				for (let i = 0; i < STEPS; i++) {
+					test.step(template, data);
+				}
+				console.timeEnd(test.name);
+			});
+		}
+
+		const tests = [VueTest, VueUnescapedTest];
+
+		fetch('data.js').then(data => data.text()).then(loadData).then(data => {
+			tests.forEach(test => {
+				benchmark(data, test);
+			});
+		});
+	</script>
+</body>
+</html>
