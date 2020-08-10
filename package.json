@@ -6,7 +6,16 @@
     "type": "git",
     "url": "git://github.com/baryshev/template-benchmark.git"
   },
+  "scripts": {
+    "test:node": "node benchmark.js",
+    "pretest:browser": "rollup -c",
+    "test:browser:server": "http-server .",
+    "test:browser:client": "open-cli --wait http://localhost:8080/benchmark.html",
+    "test:browser": "run-p -rl test:browser:*"
+  },
   "dependencies": {
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-node-resolve": "^8.4.0",
     "coffeekup": "0.3.1",
     "dot": "1.1.3",
     "dustjs-linkedin": "2.7.5",
@@ -17,9 +26,14 @@
     "gaikan": "2.0.2",
     "handlebars": "4.7.6",
     "hogan.js": "3.0.2",
+    "http-server": "^0.12.3",
     "mustache": "4.0.1",
+    "npm-run-all": "^4.1.5",
     "nunjucks": "3.2.2",
+    "open-cli": "^6.0.1",
     "pug": "3.0.0",
+    "rollup": "^2.23.1",
+    "rollup-plugin-svelte": "^5.2.3",
     "svelte": "3.24.1",
     "swig": "1.4.2",
     "underscore": "1.10.2",

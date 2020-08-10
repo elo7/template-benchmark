@@ -10,6 +10,9 @@
 	<script src="node_modules/dustjs-linkedin/dist/dust-full.min.js"></script>
 	<script src="vue/vue-cli.js"></script>
 	<script src="dust/dust-cli.js"></script>
+	<script src="svelte/svelte-cli.js"></script>
+	<script src="svelte/tpl_escaped.js"></script>
+	<script src="svelte/tpl_unescaped.js"></script>
 	<script>
 		const STEPS = 1000;
 
@@ -39,7 +42,7 @@
 			});
 		}
 
-		const tests = [VueTest, VueUnescapedTest, DustTest, DustUnescapedTest];
+		const tests = [VueTest, VueUnescapedTest, DustTest, DustUnescapedTest, SvelteTest, SvelteUnescapedTest];
 
 		fetch('data.js').then(data => data.text()).then(loadData).then(data => {
 			tests.forEach(test => {

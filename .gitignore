@@ -1,1 +1,3 @@
 node_modules
+svelte/tpl_escaped.js
+svelte/tpl_unescaped.js
