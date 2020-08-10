@@ -1,15 +1,17 @@
+<script>
+	export let title, text, projects;
+</script>
 <html>
 	<head>
-		<title>{{{title}}}</title>
+		<title>{@html title}</title>
 	</head>
 	<body>
-		<p>{{{text}}}</p>
-		{{#each projects as project}}
-			<a href="{{project.url}}">{{{project.name}}}</a>
-			<p>{{{project.description}}}</p>
-		{{/each}}
-		{{#if !projects}}
+		<p>{@html text}</p>
+		{#each projects as project}
+			<a href="{project.url}">{@html project.name}</a>
+			<p>{@html project.description}</p>
+		{:else}
 			No projects
-		{{/if}}
+		{/each}
 	</body>
 </html>
