@@ -6,10 +6,16 @@ const DustTest = {
 			dust.loadSource(compiled);
 		});
 	},
-	step: function(template, data, done) {
-		dust.render('test', data, function(err, html) {
-			result.innerHTML = html;
-			done();
+	step: function(template, data) {
+		return new Promise((resolve, reject) => {
+			dust.render('test', data, function(err, html) {
+				if (err) {
+					reject(err);
+				} else {
+					result.innerHTML = html;
+					resolve();
+				}
+			});
 		});
 	}
 };
@@ -23,9 +29,15 @@ const DustUnescapedTest = {
 		});
 	},
 	step: function(template, data, done) {
-		dust.render('test', data, function(err, html) {
-			result.innerHTML = html;
-			done();
+		return new Promise((resolve, reject) => {
+			dust.render('test', data, function(err, html) {
+				if (err) {
+					reject(err);
+				} else {
+					result.innerHTML = html;
+					resolve();
+				}
+			});
 		});
 	}
 };

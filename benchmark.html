@@ -26,13 +26,16 @@
 				console.time(test.name);
 				let i = 0;
 				let loop = function() {
-					if (i === STEPS) {
-						console.timeEnd(test.name);
-					}
-					i++;
-					test.step(template, data, loop);
+					return test.step(template, data).then(() => {
+						if (i === STEPS) {
+							console.timeEnd(test.name);
+						} else {
+							i++;
+							return loop();
+						}
+					});
 				};
-				loop();
+				return loop();
 			});
 		}
 
